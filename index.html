@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,34 +10,25 @@
   <body>
     <header class="header">
       <h1>GitHub Profile</h1>
-      <p></p>
     </header>
 
     <main class="main">
-      <div class="main-form">
-        <input type="text" placeholder="Ingrese el Usuario" id="input" />
-        <button id="button" data-haspress>buscar</button>
-      </div>
-      <div class="response" id="response">
-        <div class="response-header">
-          <!-- <div class="user-data">
-            <h2>Usuario</h2>
-            <img src="./img/interior2.jpg" alt="user" />
-          </div> -->
-          <!-- <div class="user-data-info">
-            <p>name</p>
-            <p>Correo</p>
-            <p>repositorios</p>
-          </div> -->
-          <!-- <div class="repositorio">
-            <a href="#">repo</a>
-            <a href="#">repo</a>
-            <a href="#">repo</a>
-            <a href="#">repo</a>
-          </div> -->
+      <form action="/" method="post" class="form" id="form">
+        <div class="content-input">
+          <label for="user">Usuario</label>
+          <input type="text" name="user" id="user" placeholder="pepa..." />
         </div>
-      </div>
+        <button type="submit" id="button" aria-label="buscar" data-haspress>
+          Buscar
+        </button>
+      </form>
+
+      <div class="response" id="response">
+          <div class="user-data">
+
+
+          </div>
     </main>
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js" type="module"></script>
   </body>
 </html>

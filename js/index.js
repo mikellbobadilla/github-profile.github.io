@@ -1,94 +1,30 @@
-const button = document.getElementById('button')
-const input = document.getElementById('input')
-const $fragment = document.createDocumentFragment()
-const $headerName = document.querySelector('.header p')
+import { getDataGit } from './getData.js'
 
-const $response = document.getElementById('response')
+const form = document.getElementById('form')
 
-button.addEventListener('click', () => {
-  const data = input.value
-  if (data === '') {
-    alert('Please enter a valid name')
-    return
-  } else {
-    if (button.dataset.haspress === 'false') {
-      alert('Please press the reset button')
-      return
-    } else {
-      fetch(`https://api.github.com/users/${data}`)
-        .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-        .then((data) => {
-          console.log(data)
-          button.dataset.haspress = false
-          $headerName.textContent = data.name
-          const user = userData(data)
-          $fragment.appendChild(user)
-          const info = infoData(data)
-          $fragment.appendChild(info)
-          $response.appendChild($fragment)
-        })
-        .catch((err) => console.log(err))
-    }
-  }
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const name = document.getElementById('user').value
+  getDataGit(name)
 })
-//components
-function userData({ login, avatar_url }) {
-  const $div = document.createElement('div')
-  const $h2 = document.createElement('h2')
-  const $img = document.createElement('img')
 
-  $div.classList.add('user-data')
-  $h2.textContent = login
-  $img.setAttribute('src', avatar_url)
-  $img.setAttribute('alt', 'avatar')
-  $div.appendChild($h2)
-  $div.appendChild($img)
-  return $div
-}
-
-function infoData({ name, email, public_repos, location, bio }) {
-  const $div = document.createElement('div')
-  const $p = document.createElement('p')
-  const $p2 = document.createElement('p')
-  const $p3 = document.createElement('p')
-  const $p4 = document.createElement('p')
-  const $p5 = document.createElement('p')
-  $div.classList.add('user-data-info')
-  $p.textContent = `Name: ${name}`
-  $p2.textContent = `Email: ${email || 'No email'}`
-  $p3.textContent = `Repostiory: ${public_repos}`
-  $p4.textContent = `Location: ${location || 'No location'}`
-  $p5.textContent = `Bio: ${bio || 'No bio'}`
-  $div.appendChild($p5)
-  $div.appendChild($p)
-  $div.appendChild($p2)
-  $div.appendChild($p3)
-  $div.appendChild($p4)
-  return $div
-}
-
-// async function getUserData() {
-//   try {
-//     const res = await fetch('https://api.github.com/users/NOA-eng')
-//     const data = await res.json()
-
-//     if (!res.ok)
-//       throw {
-//         status: res.status,
-//         statusText: res.statusText,
-//       }
-
-//     data.forEach((el) => {
-//       const dataUser = userData(el)
-//       console.log(dataUser)
-//       const dataInfo = infoData(el)
-//       console.log(dataInfo)
-//       $fragment.appendChild(dataUser)
-//       $fragment.appendChild(dataInfo)
-//     })
-//     $response.appendChild($fragment)
-//   } catch (err) {}
-// }
-// // console.log($fragment)
-
-// getUserData()
+const template = `            <!-- <div class="user-data-box">
+              <p>Datos de Usuario</p>
+              <div class="user">
+                <a href="#">mikellbobadilla</a>
+                <img src="./img/interior2.jpg" alt="avatar" width="70px">
+              </div>
+            </div> -->
+            <!-- <div class="user-data-content">
+              <p><strong>Nombre:</strong> Sting</p>
+              <p><strong>Bio:</strong> Frontend Developer</p>
+              <p><strong>Ubicación:</strong> Buenos Aires - Argentina</p>
+              <p><strong>Blog:</strong> link</p>
+              <p><strong>Cant. Repositorios:</strong> 13</p>
+            </div> -->
+            <!-- <div class="user-data-repo">
+              <h3>Cont. Respositorio: </h3>
+              <p><strong>Nombre:</strong> Cajero Automatico</p>
+              <p><strong>Link Repo:</strong> click aqui</p>
+              <p><strong>Lenguaje:</strong> Javascript</p>
+            </div> -->`
