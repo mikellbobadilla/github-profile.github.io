@@ -5,6 +5,7 @@ const box = document.querySelector('.user-data')
 const $fragement = document.createDocumentFragment()
 
 export const getDataGit = async (name) => {
+  if (box.hasChildNodes()) box.innerHTML = ''
   try {
     const res = await fetch(`https://api.github.com/users/${name}`)
 
@@ -14,8 +15,6 @@ export const getDataGit = async (name) => {
       const data = await res.json()
       const datos = dataUser(data)
       const datosContent = dataContent(data)
-
-      if (box.hasChildNodes()) box.innerHTML = ''
 
       $fragement.appendChild(datos)
       $fragement.appendChild(datosContent)
