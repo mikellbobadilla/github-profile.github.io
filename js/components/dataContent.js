@@ -10,7 +10,7 @@ export function dataContent({ name, bio, location, blog, public_repos }) {
   return userDataContent
 }
 
-function templateP(title, value) {
+export function templateP(title, value) {
   const $p = document.createElement('p')
   const $strong = document.createElement('strong')
   $strong.textContent = title

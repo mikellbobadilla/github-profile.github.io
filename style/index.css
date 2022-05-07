@@ -145,8 +145,11 @@ a {
   width: 100%;
   max-width: 400px;
   height: max-content;
+  max-height: 700px;
   margin: 20px auto;
   padding: 5px 0;
+
+  overflow-x: auto;
 
   -webkit-border-radius: 50px;
   border-radius: 10px;
